@@ -53,6 +53,30 @@ A comprehensive, end-to-end test automation framework built with [Playwright](ht
    npx playwright install --with-deps
    ```
 
+### 🤖 AI Agent Integration
+
+This project was built utilizing **Playwright AI Agents** via a VS Code **MCP** (Model Context Protocol) server. There are three specialized AI agents tasked with managing the test lifecycle:
+
+- **Planner** (`playwright-test-planner.agent.md`): Responsible for understanding requirements and structuring the test plans.
+- **Generator** (`playwright-test-generator.agent.md`): Responsible for writing the actual Playwright test code based on the plans.
+- **Healer** (`playwright-test-healer.agent.md`): Analyzes test failures, traces, and DOM dumps to automatically fix broken tests.
+
+#### Initializing Agents
+
+To initialize the agents to run directly inside VS Code through the MCP loop, execute the following command:
+
+```bash
+npx playwright init-agents --loop=vscode
+```
+
+#### Additional Configurations
+
+To successfully run and interact with these agents in your environment, you will need to configure the following:
+
+1. **VS Code & MCP Extension**: Ensure you are using Visual Studio Code and have an appropriate AI agent extension installed (such as Cline, Roo Code, or an equivalent extension that hooks into MCP).
+2. **API Keys**: Depending on the underlying LLM powering the agents (e.g., OpenAI, Anthropic), make sure you have your API key set as an environment variable (e.g., `OPENAI_API_KEY` or `ANTHROPIC_API_KEY`) so the agents can connect to the model.
+3. **Agent Definitions**: The initialization command will map internal IDE instructions to the agent definition files found inside the `.github/agents/` folder. Make sure not to manually delete or alter these core `.agent.md` files unless you are customizing the agent prompts.
+
 ## 🧪 Running Tests
 
 Playwright comes with a rich set of CLI commands. Here are the most common ways to execute the test suite:
